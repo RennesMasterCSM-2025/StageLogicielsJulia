@@ -114,7 +114,7 @@ Ouvrir la console « Git bash »:
 
 ```bash
 git config --global user.name “Pierre Navaro"
-git config --global user.email “pierre.navaro@univ-rennes1.fr`
+git config --global user.email “pierre.navaro@univrennes.fr`
 ```
 
 
@@ -241,7 +241,7 @@ git status
 
 
 ```bash
-touch index.m`
+touch index.md
 ```
 
 
@@ -294,14 +294,17 @@ git status
 # Les différents états des fichiers dans la copie du dépôt
 
 
-<img src="assets/18333fig0201-tn.png" class="bg-primary" alt="git" width="450px"/>
+<center><img src="assets/18333fig0201-tn.png" class="bg-primary" alt="git" width="650px"/></center>
+
+
+---
 
 
 
 
 
 
-## Mettre le dépôt sur GitHub
+# Mettre le dépôt sur GitHub
 
 
 Créer un dépot github, que nous appelerons `mon_projet` :
@@ -396,7 +399,10 @@ git push origin main
 # Git Workflow
 
 
-<img src="assets/fourstages.png" alt="git" width="150px"/>
+<center><img src="assets/fourstages.png" alt="git" width="250px"/></center>
+
+
+---
 
 
 
@@ -476,6 +482,9 @@ git reset --hard
 Attention cette dernière commande, annule tous les changements qui n'ont pas été validés par un *commit*.
 
 
+---
+
+
 
 
 
@@ -505,7 +514,10 @@ git branch
 ```
 
 
-Des fichiers peuvent être différents ou meme inexsitants dans deux branches distinctes mais ils se trouveront au même endroit dans le système de fichiers.
+Des fichiers peuvent être différents ou meme inexistants dans deux branches distinctes mais ils se trouveront au même endroit dans le système de fichiers.
+
+
+---
 
 
 
@@ -513,6 +525,9 @@ Des fichiers peuvent être différents ou meme inexsitants dans deux branches di
 
 
 ## Afficher les modifications sur un fichier
+
+
+La commande suivante ajoute la date et l'heure à la fin du fichier README.md
 
 
 ```bash
@@ -526,7 +541,7 @@ git status
 
 
 ```bash
-git diff
+git diff README.md
 ```
 
 
@@ -550,6 +565,9 @@ git status
 ```bash
 git commit -m 'Add today date in README'
 ```
+
+
+---
 
 
 
