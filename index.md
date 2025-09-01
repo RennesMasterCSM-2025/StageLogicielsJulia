@@ -1,0 +1,1174 @@
+
+
+
+
+
+# Git
+
+
+Git est un logiciel de gestion de versions.
+
+
+Site officiel https://git-scm.com
+
+
+Le livre en français https://git-scm.com/book/fr/v2
+
+
+---
+
+
+
+
+
+
+# Pourquoi un gestionnaire de version
+
+
+  * Toutes les modifications sont enregistrées.
+  * A tout moment vous pouvez revenir sur une version précédente.
+  * Vous pouvez l'utiliser pour quasiment tous les types de fichier.
+  * C'est la meilleure approche pour collaborer sur un document lisible en format texte.
+  * Chaque modification est identifiée et datée.
+  * Ne convient pas aux fichiers volumineux souvent modifiés
+  * N'est pas adapté aux formats non lisibles en mode texte comme le pdf, word ou excel.
+
+
+---
+
+
+
+
+
+
+# GitHub
+
+
+  * Service web appartenant à Microsoft utilisant Git comme gestionnaire de version.
+  * Github permet de collaborer sur toutes les étapes de développement d'un logiciel ou de la rédaction d'un document au format texte au cours du temps.
+  * Github permet d'organiser cette collaboration avec différents niveaux d'accès, la gestion des bugs, l'hébergement de la documentation et une mécanisme d'intégration continue.
+  * Github est la plus grande bibliothèque de codes du monde et on y retrouve les meilleures développeurs.
+  * Fonctionne de plus en plus comme un réseau social et offre une grande visibilité à vos travaux.
+
+
+Services équivalents: [Bitbucket](https://bitbucket.org) et [Codeberg](https://codeberg.org)
+
+
+---
+
+
+
+
+
+
+# Gitlab
+
+
+  * Forge officielle : [Gitlab.com](https://about.gitlab.com)
+  * Gitlab permet d'herberger sa propre instance.
+  * Beaucoup d'institutions proposent des instances Gitlab
+
+      * PLM [https://plmlab.math.cnrs.fr](https://plmlab.math.cnrs.fr) (pages, CI)
+      * INRIA [https://gitlab.inria.fr](https://gitlab.inria.fr) (pages, CI)
+      * Université de Rennes [https://gitlab.univ-rennes1.fr](https://gitlab.univ-rennes1.fr) (~~pages~~, ~~CI~~)
+      * INSA Rennes [https://gitlab.insa-rennes.fr](https://gitlab.insa-rennes.fr)(~~pages~~, ~~CI~~)
+      * INRAE [https://forge.inrae.fr](https://forge.inrae.fr) (pages, CI)
+      * CNRS [https://src.koda.cnrs.fr/](https://src.koda.cnrs.fr/)(~~pages~~, ~~CI~~)
+
+
+---
+
+
+
+
+
+
+# Gestion distribuée des versions
+
+
+<center><img src="assets/git.png" alt="git" class="bg-primary" width="300px"/></center>
+
+
+  * Chaque membre du projet possède une copie totale du projet
+  * On peut contribuer seul ou à plusieurs.
+  * Pas besoin de connexion réseau
+  * Les sauvegardes sont très nombreuses grâce à ce système.
+
+
+---
+
+
+
+
+
+
+## Installation et configuration
+
+
+  * Télécharger et installer [Git](http://git-scm.com).
+  * Configuration: Il faut renseigner votre identité avec votre adresse de messagerie.
+
+
+Ouvrir la console « Git bash »:
+
+
+```bash
+git config --global user.name “Pierre Navaro"
+git config --global user.email “pierre.navaro@univ-rennes1.fr`
+```
+
+
+Utiliser la même adresse que pour votre compte GitHub. Verifier la configuration avec:
+
+
+```bash
+git config --list
+```
+
+
+---
+
+
+
+
+
+
+# Créer sa clé SSH
+
+
+Saisissez la ligne suivante dans le git bash:
+
+
+```bash
+ssh-keygen
+```
+
+
+Valider les questions suivantes :
+
+
+```
+Enter file in which to save the key (/****/****/.ssh/id_rsa):
+```
+
+
+appuyer sur « enter » ou saisir le nom du certificat puis « enter »
+
+
+```
+Enter passphrase (empty for no passphrase):
+```
+
+
+Appuyer sur "enter" ou saisir un mot de passe. Deux fichiers on été créés : un clé publique et une clé privée. La clé publique sera celle que l'on pourra partager et la clé privée ne doit être communiquée sous aucun prétexte, elle est comme un mot de passe. Si vous la perdez vous devrez recommencer la procédure.
+
+
+---
+
+
+
+
+
+
+# Créer votre compte GitHub et GitLab
+
+
+GitHub: Il suffit de cliquer en haut à droite sur `Sign Up`. Ajouter votre clé publique dans votre profile (Settings -> SSH and GPG keys -> New SSH key)
+
+
+Gitlab: En haut à droite, dans le profile il y a un menu `Settings` qui contient un onglet `SSH Keys`.
+
+
+---
+
+
+
+
+
+
+# Clonage d'un dépôt git
+
+
+```bash
+git clone git@github.com:RennesMasterCSM-2025/StageLogicielsJulia.git
+ls StageLogicielsJulia
+```
+
+
+Vous aurez une copie de ces transparents sur votre ordinateur.
+
+
+---
+
+
+
+
+
+
+# Mettre en place un dépôt git local
+
+
+Créons un nouveau répertoire où nous nous allons ajouter un fichier README:
+
+
+```bash
+cd $HOME
+mkdir monprojet
+cd monprojet
+touch README.md
+echo "# Mon Projet " >> README.md
+ls
+```
+
+
+Création du dépôt git:
+
+
+```bash
+git init
+git status
+```
+
+
+---
+
+
+
+
+
+
+# Ajouter un fichier à l'index
+
+
+```bash
+touch index.m`
+```
+
+
+```bash
+git status
+```
+
+
+La commande `add` est nécessaire pour un nouveau fichier mais aussi pour un fichier qui a été modifié.
+
+
+```bash
+git add index.md
+echo "# Titre du projet" >> index.md
+```
+
+
+```bash
+git status
+```
+
+
+---
+
+
+
+
+
+
+# Validation et sauvegarde (commit)
+
+
+```bash
+git commit -m 'Create the file index.md'
+```
+
+
+```bash
+git status
+```
+
+
+---
+
+
+
+
+
+
+# Les différents états des fichiers dans la copie du dépôt
+
+
+<img src="assets/18333fig0201-tn.png" class="bg-primary" alt="git" width="450px"/>
+
+
+
+
+
+
+## Mettre le dépôt sur GitHub
+
+
+Créer un dépot github, que nous appelerons `mon_projet` :
+
+
+  * Cliquer sur le '+' en haut à droite et "New repository"
+  * Repository name = "mon_projet"
+  * Laisser les options par défaut
+  * Cliquer sur "Create repository"
+
+
+```bash
+git remote add origin git@github.com:{GITHUB_LOGIN}/mon_projet.git
+git push -u origin master
+```
+
+
+Remplacer `{GITHUB_LOGIN}` par votre login github.
+
+
+```bash
+git status
+```
+
+
+---
+
+
+
+
+
+
+# Synchroniser avec la version distante sur le dépôt
+
+
+Vous pouvez modifier les fichiers directement sur le site GitHub. La commande suivante permet de rappatrier toutes les modifications sur le dépôt distant (remote) sans modifier votre version locale. Toutes les branches commencant par "origin/*" seront mises à jour.
+
+
+```bash
+git fetch origin
+```
+
+
+```bash
+git status
+```
+
+
+---
+
+
+
+
+
+
+# Mettre à jour le dépôt distant
+
+
+Modifier ou créer un fichier et effectuer un nouveau commit.
+
+
+Votre `commit` sera téléversé sur le serveur git
+
+
+  * `origin` correspond au dépôt distant
+  * `main` la branche que vous souhaitez mettre à jour
+
+
+par défaut vous êtes sur la branche "main"
+
+
+```bash
+git branch -a`
+```
+
+
+"Pousser" vos fichiers sur le serveur.
+
+
+```bash
+git push origin main
+```
+
+
+---
+
+
+
+
+
+
+# Git Workflow
+
+
+<img src="assets/fourstages.png" alt="git" width="150px"/>
+
+
+
+
+
+
+# Fusionner la branche distante avec la branche locale
+
+
+Si la version distante est en avance sur la version locale, il existe différentes manières de récupérer les modifications:
+
+
+```bash
+git fetch origin
+git merge origin/master
+```
+
+
+Les deux étapes précédentes peuvent être effectuées en une seule commande avec
+
+
+```bash
+git pull origin master
+```
+
+
+Je déconseille cette approche car avec le `git fetch` on peut anticiper des conflits avec
+
+
+```bash
+git diff origin/master
+```
+
+
+ou en version graphique si l'outil est installé sur votre poste:
+
+
+```bash
+git difftool origin/master
+```
+
+
+---
+
+
+
+
+
+
+## Résoudre les conflits
+
+
+  * Cette outil permet de choisir les modifications lorsqu'un fichier a été modifié au même endroit.
+
+
+```bash
+git mergetool
+```
+
+
+  * En cas de problèmes sur un fichier, vous pouvez annuler toutes les modifications non validées par un *commit* avec :
+
+
+```bash
+git checkout mon_fichier_modif
+```
+
+
+  * Si vraiment il y a de gros soucis
+
+
+```bash
+git reset --hard
+```
+
+
+Attention cette dernière commande, annule tous les changements qui n'ont pas été validés par un *commit*.
+
+
+
+
+
+
+## Afficher les branches
+
+
+```bash
+git branch -a
+```
+
+
+
+
+
+
+## Créer une branche
+
+
+Permet de "figer" une version personnelle locale sur laquelle vous pouvez travailler sans modifier la branche principale "master".
+
+
+```bash
+git branch mabranche
+git checkout mabranche
+git branch
+```
+
+
+Des fichiers peuvent être différents ou meme inexsitants dans deux branches distinctes mais ils se trouveront au même endroit dans le système de fichiers.
+
+
+
+
+
+
+## Afficher les modifications sur un fichier
+
+
+```bash
+date >> README.md
+```
+
+
+```bash
+git status
+```
+
+
+```bash
+git diff
+```
+
+
+
+
+
+
+## Enregister les modifications
+
+
+```bash
+git add README.md
+```
+
+
+```bash
+git status
+```
+
+
+```bash
+git commit -m 'Add today date in README'
+```
+
+
+
+
+
+
+## Commit
+
+
+![index1](assets/index1.png)
+
+
+
+
+
+
+## Fast commit
+
+
+![index2](assets/index2.png)
+
+
+
+
+
+
+## Partager votre travail sur le serveur
+
+
+
+
+
+
+### Option 1 : fusionner sur la branche principale et pousser
+
+
+```bash
+git checkout master
+git merge mabranche
+git push origin master
+```
+
+
+
+
+## Partager votre travail sur le serveur
+
+
+
+
+
+
+## Option 2 : Pousser la branche locale sur le serveur
+
+
+```bash
+git checkout mabranche
+git push origin mabranche
+```
+
+
+
+
+
+
+## Mise à jour depuis le dépôt distant
+
+
+```bash
+git checkout master
+git fetch origin
+git merge origin/master
+```
+
+
+```bash
+git checkout mabranche
+git merge master
+```
+
+
+Si votre branche locale n'est pas présente sur le serveur, vous pouvez utiliser `rebase` à la place de `merge`. Cette opération permet de récrire l'historique en datant vos modifications postérieures à la dernière modification de la branche master.
+
+
+---
+
+
+
+
+
+
+## Cycle
+
+
+![Cycle](assets/git_cycle.png)
+
+
+
+
+
+
+## Développement pour garantir la stabibité
+
+
+![Branches](assets/lr-branches-2.png)
+
+
+---
+
+
+
+
+
+
+# Stash
+
+
+Permet d'enregistrer l'état de vos fichiers sans enregistrer les modifications par un `commit`. Modifiez un fichier sans effectuer de commit et entrez les commandes suivantes:
+
+
+```bash
+git stash
+git stash show
+```
+
+
+
+
+
+
+## Appliquer un `stash`
+
+
+```bash
+git stash pop
+```
+
+
+
+
+
+
+## Supprimer un `stash`
+
+
+```bash
+git stash drop
+```
+
+
+---
+
+
+
+
+
+
+# Pourquoi Git ?
+
+
+  * Tracer et controler les modifications dans un logiciel.
+  * Branches : Développement dédié pouvant fonctionner en paralléle.
+  * Tout est local : Git est rapide.
+  * Des sauvegardes trés nombreuses.
+  * Cette distinction local-distant offre plus de sécurité
+  * Le mécanisme des `pull request` favorise la relecture et est une garantie supplémentaire de stabilité.
+
+
+---
+
+
+
+
+
+
+# Pourquoi pas
+
+
+  * Difficile à apprendre pour les utilisateurs de cvs et subversion qui sont moins puissants mais plus simples et souvent suffisants dans beaucoup de cas.
+  * Syntaxe en ligne de commande un peu folle et parfois confuse.
+  * Il faut parfois enchainer beaucoup d'instructions pour des opérations assez simples.
+  * L'historique créé par git est parfois étrange, certaines modifications peuvent changer d'auteur.
+  * On peut détruire le dépôt distant involontairement.
+  * Offre beaucoup de confort au responsable de la maintenance du code au détriment des contributeurs.
+
+
+---
+
+
+
+
+
+
+# Quelques commandes utiles
+
+
+  * Quels fichiers différent dans deux branches distinctes ?
+
+
+```bash
+git diff --name-status master..mabranche
+```
+
+
+  * Comparer la version sur la branche principale avec une autre branche
+
+
+```bash
+git diff mabranche master -- intro.md
+```
+
+
+---
+
+
+
+
+
+
+# .gitignore
+
+
+Si votre dépôt contient un fichier `.gitignore` avec une liste de fichiers, les modifications de ces fichiers seront ignorés par git. Je conseille de supprimer ces fichiers de l'historique avant de les ignorer.
+
+
+  * Pour effacer tous les fichiers ignorés (à faire après un commit)
+
+
+```bash
+git clean -xdf
+```
+
+
+---
+
+
+
+
+
+
+# Ignorer tous les changements et revenir au point de départ
+
+
+  * Sur un fichier
+
+
+```bash
+git checkout README.md
+```
+
+
+  * Pour revenir au point de départ
+
+
+```bash
+git reset --hard
+```
+
+
+
+
+
+
+## Utiliser git plus facilement
+
+
+  * [GitHub Desktop](https://desktop.github.com/)
+  * [Sourcetree](https://fr.atlassian.com/software/sourcetree)
+  * [GitKraken](https://www.gitkraken.com/)
+  * [Fork](https://git-fork.com)
+  * [Plugin RStudio](https://www.rstudio.com/)
+  * [Plugin Eclipse](https://www.eclipse.org/downloads/)
+  * [Produits JetBrains](https://www.jetbrains.com/)
+
+
+
+
+
+
+# Installation de Julia
+
+
+Pour commencer, nous avez besoin d'installer Julia. [juliaup](https://github.com/JuliaLang/juliaup) est une solution légère permettant d'installer la dernière version disponible.
+
+
+```bash
+curl -fsSL https://install.julialang.org | sh
+. /home/pnavaro/.profile
+```
+
+
+```
+$ julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.11.6 (2025-07-09)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+```
+
+
+---
+
+
+
+
+
+
+# REPL (Read-Eval-Print Loop)
+
+
+Le REPL Julia REPL possède 4 modes: Julia, package (`]`), help (`?`) et shell (`;`).
+
+
+Vous pouvez consulter la [documentation](https://docs.julialang.org/en/v1/stdlib/REPL/) pour les details.
+
+
+```>repl-example
+a, b = 1, 2;
+a + b
+```
+
+
+Il s'agit du mode standard (Julia) du REPL, mais il existe trois autres modes que vous devez connaître. Pour accéder à chaque mode, tapez un caractère spécifique après l'invite « julia> ». Une fois que vous êtes dans un mode non Julia, vous y restez pour chaque commande que vous exécutez. Pour en sortir, appuyez sur la touche "backspace" après l'invite et vous retrouverez l'invite « julia> ».
+
+
+---
+
+
+
+
+
+
+# Help mode (`?`)
+
+
+En appuyant sur « ? », vous pouvez obtenir des informations et des métadonnées sur les objets Julia (fonctions, types, etc.) ou les symboles Unicode. La requête récupère la chaîne de documentation de l'objet, qui explique comment l'utiliser.
+
+
+```?help-example
+search: println print pointer sprint printstyled
+
+  println([io::IO], xs...)
+
+  Print (using print) xs to io followed by a newline. If io is not supplied, prints to the default output stream stdout.
+
+  See also printstyled to add colors etc.
+
+  Examples
+  ≡≡≡≡≡≡≡≡
+
+  julia> println("Hello, world")
+  Hello, world
+
+  julia> io = IOBuffer();
+
+  julia> println(io, "Hello", ',', " world.")
+
+  julia> String(take!(io))
+  "Hello, world.\n"
+```
+
+
+---
+
+
+
+
+
+
+# Package mode (`]`)
+
+
+En appuyant sur `]` vous accédez à [Pkg.jl](https://github.com/JuliaLang/Pkg.jl), le gestionnaire de package, il faut absolument parcourir la [documentation](https://pkgdocs.julialang.org/v1/getting-started/).
+
+
+  * `]activate` création d'environnements differents local, partagé ou temporaires;
+  * `]instantiate` installe les packages de cet environnement listés dans le fichier Project.toml;
+  * `]add`, `]update` (ou `]up`) et `]remove` (ou `]rm`) packages;
+  * obtenir le `]status` (or `]st`) de l'environnement activé.
+
+
+Illustration avec le package Example.jl:
+
+
+```]pkg-example
+add Example
+```
+
+
+```]pkg-example
+status
+```
+
+
+---
+
+
+
+
+
+
+# Shell mode (`;`)
+
+
+En appuyant sur `;` vous basculez sur un terminal. Exemple avec un système Linux :
+
+
+```;shell-example
+ls 
+```
+
+
+---
+
+
+
+
+
+
+# VSCode
+
+
+Les programmes julia sont souvent de simples fichiers texte avec une extension spécifique `.jl`. N'importe quel éditeur de texte suffit pour écrire et modifier du code Julia mais, en pratique, VSCode rend l'expérience plus agréable, grâce à des utilitaires liés au code et des extensions spécifiques au langage.
+
+
+Le meilleur IDE pour Julia est [Visual Studio Code](https://code.visualstudio.com/), ou VSCode, développé par Microsoft. En effet, l'[extension Julia pour VSCode](https://www.julia-vscode.org/) est la plus riche en fonctionnalités parmi tous les plugins IDE pour Julia. Vous pouvez la télécharger depuis le Marketplace de VSCode et lire sa [documentation](https://www.julia-vscode.org/docs/stable/).
+
+
+Des [raccourcis clavier](https://www.julia-vscode.org/docs/stable/userguide/keybindings/) sont fournis par cette extension.  `Ctrl + Shift + P` (ou `Cmd + Shift + P` sur Mac) ouvre la palette de commandes de VSCode, dans laquelle vous pouvez tapez "julia" pour voir ce que vous pouvez faire.
+
+
+---
+
+
+
+
+
+
+# Exécuter du code
+
+
+Ouvrez un REPL et exécutez tout votre code de manière interactive.
+
+
+Vous pouvez exécuter un script Julia depuis votre terminal.
+
+
+```bash
+julia monfichier.jl  # à éviter
+```
+
+
+Julia a une latence de démarrage et de compilation plutôt élevée. C'est pourquoi il faut lancer un REPL et y exécuter tout votre code avec la fonction include.
+
+
+```julia-repl
+julia> include("monfichier.jl")
+```
+
+
+Alternativement, `includet` du package [Revise.jl](https://github.com/timholy/Revise.jl) peut être utilisé pour "inclure et suivre" un fichier. Cela mettra automatiquement à jour les modifications apportées aux définitions de fonctions dans le fichier dans la session REPL en cours.
+
+
+Lorsque vous gardez le même REPL ouvert pendant longtemps, il est courant de se retrouver avec un espace de travail où les définitions de certaines variables ou fonctions ont été écrasées de manière inattendue. Cela peut vous obliger à redémarrer votre REPL de temps en temps, et c'est normal.
+
+
+---
+
+
+
+
+
+
+# Installer IJulia et Jupyter
+
+
+Vous pouvez installer Jupyter avec le package IJulia
+
+
+```julia
+julia> import Pkg
+julia> Pkg.add("IJulia")
+    Updating registry at `~/.julia/registries/General.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.11/Project.toml`
+  No Changes to `~/.julia/environments/v1.11/Manifest.toml`
+
+julia> using IJulia
+
+julia> notebook( dir = pwd())
+```
+
+
+---
+
+
+
+
+
+
+# Jupyter Notebook
+
+
+  * Le calepin Jupyter est un outil de rédaction qui permet de partager une analyse mathématique.
+  * Rassembler du code informatique, du texte, des images et des formules mathématiques dans un seul document.
+  * Le code informatique est modifiable et exécutable.
+  * Excellent support pour travailler et surtout pour partager.
+  * Jupyter comporte de nombreuses extensions et supporte [un nombre important de langages](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
+  * Logiciel libre, ouvert et totalement gratuit qui fonctionne sur tous les systèmes d'exploitation existants.
+
+
+Jupyter est un acronyme des 3 langages supportés à l'origine du projet: **JU**lia, **PYT**hon, et **R**
+
+
+---
+
+
+
+
+
+
+# Raccoucis clavier
+
+
+  * Pour afficher les commandes disponibles: `Cmd + Shift + P`
+  * Exécuter une cellule
+
+      * 'Cmd-Enter' exécute la cellule courante
+      * 'Shift-Enter' exécute la cellule courante et passe à la suivante
+      * 'Alt-Enter' exécute la cellule et crée une nouvelle en dessous.
+  * `Esc` permet de basculer en mode "commande" et vous pouvez naviguer dans le document avec les flèches de votre clavier. En mode "commande":
+
+      * `A` permet d'insérer une nouvelle cellule **au dessus** de la cellule active
+      * `B` permet d'insérer une nouvelle cellule **en dessous** de la cellule active
+      * `M` bacule en mode texte (markdown), `Y` pour revenir au code
+      * `D + D` en pressant deux fois ce caractère vous effacez la cellule courante
+  * "Shift-Ctrl-M" permet de couper une cellule en deux au niveau du curseur.
+
+
+---
+
+
+
+
+
+
+# Remarques importantes
+
+
+  * Un calepin Jupyter n'est pas vraiment un programme Julia
+  * Il s'agit d'une suite d'instructions exécutées dans un ordre particulier avec éventuellement des répétitions.
+  * Avant de partager un notebook, il est préférable d'aller dans l'onglet `Kernel` et cliquer sur `Restart & Run All` et vérifier que tout ce passe bien.
+
+
+---
+
+
+
+
+
+
+# Environnement local
+
+
+Comme nous l'avons vu, Pkg.jl est l'équivalent Julia de `pip` ou `conda` pour Python. Il vous permet d'[installer des paquets](https://pkgdocs.julialang.org/v1/managing-packages/) et de [gérer des environnements](https://pkgdocs.julialang.org/v1/environments/) (ensembles de paquets avec des versions spécifiques).
+
+
+Vous pouvez activer un environnement depuis le REPL Pkg en spécifiant son chemin `]activate quelquechemin`. Typiquement, vous feriez `]activate .` pour activer l'environnement dans le répertoire courant. Une autre option est de démarrer Julia directement dans un environnement, avec l'option en ligne de commande `julia --project=quelquechemin`.
+
+
+Une fois dans un environnement, les paquets que vous `]add` seront listés dans deux fichiers `quelquechemin/Project.toml` et `quelquechemin/Manifest.toml` :
+
+
+  * `Project.toml` contient les informations générales du projet (nom du paquet, identifiant unique, auteurs) et les dépendances directes avec des contraintes de version.
+  * `Manifest.toml` contient les versions exactes de toutes les dépendances directes et indirectes.
+
+
+---
+
+
+
+
+
+
+# Environnement global
+
+
+Si vous n'êtes entré dans aucun projet local, les paquets seront installés dans l'environnement par défaut, appelé `@v1.X` d'après la version active de Julia (notez le `@` devant le nom). Les paquets installés de cette manière sont disponibles quel que soit l'environnement local activé, grâce à l'["empilement d'environnements"](https://docs.julialang.org/en/v1/manual/code-loading/#Environment-stacks) (*stacking*). Il est recommandé de garder l'environnement par défaut très léger pour éviter les conflits de dépendances. Il ne devrait contenir que des outils de développement essentiels.
+
+
+Exercice: 
+
+
+  * Installez ls packages `Revise`, et `Plots` dans l'environnement global.
+  * Créez un répertoire avec un environnement local
+  * Ajouter les packages `FFTW`
+
+
+---
+
+
+
+
+
+
+# Téléchargement des supports
+
+
+```bash
+git clone https://github.com/pnavaro/Julia_Introduction
+cd Julia_Introduction
+julia --project
+julia> import Pkg
+julia> Pkg.instantiate()
+julia> using IJulia
+julia> notebook(dir=pwd())
+```
+
