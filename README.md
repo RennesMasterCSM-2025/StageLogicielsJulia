@@ -1,2 +1,3 @@
-# StageLogicielsJulia
-Stage Logiciels - Langage Julia
+# Stage Logiciels Master CSM Rennes 2025-2026
+
+Langage Julia
