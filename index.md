@@ -318,7 +318,7 @@ Créer un dépot github, que nous appelerons `mon_projet` :
 
 ```bash
 git remote add origin git@github.com:{GITHUB_LOGIN}/mon_projet.git
-git push -u origin master
+git push -u origin main
 ```
 
 
@@ -417,7 +417,7 @@ Si la version distante est en avance sur la version locale, il existe différent
 
 ```bash
 git fetch origin
-git merge origin/master
+git merge origin/main
 ```
 
 
@@ -425,7 +425,7 @@ Les deux étapes précédentes peuvent être effectuées en une seule commande a
 
 
 ```bash
-git pull origin master
+git pull origin main
 ```
 
 
@@ -433,7 +433,7 @@ Je déconseille cette approche car avec le `git fetch` on peut anticiper des con
 
 
 ```bash
-git diff origin/master
+git diff origin/main
 ```
 
 
@@ -441,7 +441,7 @@ ou en version graphique si l'outil est installé sur votre poste:
 
 
 ```bash
-git difftool origin/master
+git difftool origin/main
 ```
 
 
@@ -504,7 +504,7 @@ git branch -a
 ## Créer une branche
 
 
-Permet de "figer" une version personnelle locale sur laquelle vous pouvez travailler sans modifier la branche principale "master".
+Permet de "figer" une version personnelle locale sur laquelle vous pouvez travailler sans modifier la branche principale "main".
 
 
 ```bash
@@ -545,6 +545,9 @@ git diff README.md
 ```
 
 
+---
+
+
 
 
 
@@ -574,46 +577,47 @@ git commit -m 'Add today date in README'
 
 
 
-## Commit
+# Commit
 
 
 ![index1](assets/index1.png)
 
 
+---
 
 
 
 
-## Fast commit
+
+
+# Fast commit
 
 
 ![index2](assets/index2.png)
 
 
-
-
-
-
-## Partager votre travail sur le serveur
+---
 
 
 
 
 
 
-### Option 1 : fusionner sur la branche principale et pousser
+# Partager votre travail sur le serveur
+
+
+
+
+
+
+## Option 1 : fusionner sur la branche principale et pousser
 
 
 ```bash
-git checkout master
+git checkout main
 git merge mabranche
-git push origin master
+git push origin main
 ```
-
-
-
-
-## Partager votre travail sur le serveur
 
 
 
@@ -629,6 +633,9 @@ git push origin mabranche
 ```
 
 
+---
+
+
 
 
 
@@ -637,19 +644,19 @@ git push origin mabranche
 
 
 ```bash
-git checkout master
+git checkout main
 git fetch origin
-git merge origin/master
+git merge origin/main
 ```
 
 
 ```bash
 git checkout mabranche
-git merge master
+git merge main
 ```
 
 
-Si votre branche locale n'est pas présente sur le serveur, vous pouvez utiliser `rebase` à la place de `merge`. Cette opération permet de récrire l'historique en datant vos modifications postérieures à la dernière modification de la branche master.
+Si votre branche locale n'est pas présente sur le serveur, vous pouvez utiliser `rebase` à la place de `merge`. Cette opération permet de récrire l'historique en datant vos modifications postérieures à la dernière modification de la branche main.
 
 
 ---
@@ -725,7 +732,7 @@ git stash drop
 
 
 
-# Pourquoi Git ?
+# Conclusion : Pourquoi utiliser Git ?
 
 
   * Tracer et controler les modifications dans un logiciel.
@@ -734,6 +741,8 @@ git stash drop
   * Des sauvegardes trés nombreuses.
   * Cette distinction local-distant offre plus de sécurité
   * Le mécanisme des `pull request` favorise la relecture et est une garantie supplémentaire de stabilité.
+  * La maitrise de git est un vrai plus personnel pour organiser et sauvegarder son travail de développement.
+  * Git est devenu l'outil indispensable pour gérer un project de développement logiciel collectif.
 
 
 ---
@@ -746,7 +755,7 @@ git stash drop
 # Pourquoi pas
 
 
-  * Difficile à apprendre pour les utilisateurs de cvs et subversion qui sont moins puissants mais plus simples et souvent suffisants dans beaucoup de cas.
+  * Difficile à apprendre pour beaucoup.
   * Syntaxe en ligne de commande un peu folle et parfois confuse.
   * Il faut parfois enchainer beaucoup d'instructions pour des opérations assez simples.
   * L'historique créé par git est parfois étrange, certaines modifications peuvent changer d'auteur.
@@ -764,11 +773,11 @@ git stash drop
 # Quelques commandes utiles
 
 
-  * Quels fichiers différent dans deux branches distinctes ?
+  * Quels fichiers sont différents dans deux branches distinctes ?
 
 
 ```bash
-git diff --name-status master..mabranche
+git diff --name-status main..mabranche
 ```
 
 
@@ -776,7 +785,7 @@ git diff --name-status master..mabranche
 
 
 ```bash
-git diff mabranche master -- intro.md
+git diff mabranche main -- fichier.md
 ```
 
 
@@ -827,6 +836,9 @@ git reset --hard
 ```
 
 
+---
+
+
 
 
 
@@ -835,12 +847,16 @@ git reset --hard
 
 
   * [GitHub Desktop](https://desktop.github.com/)
+  * [VSCode](https://code.visualstudio.com/docs/sourcecontrol/intro-to-git)
   * [Sourcetree](https://fr.atlassian.com/software/sourcetree)
   * [GitKraken](https://www.gitkraken.com/)
   * [Fork](https://git-fork.com)
   * [Plugin RStudio](https://www.rstudio.com/)
   * [Plugin Eclipse](https://www.eclipse.org/downloads/)
   * [Produits JetBrains](https://www.jetbrains.com/)
+
+
+---
 
 
 
@@ -855,11 +871,13 @@ Pour commencer, nous avez besoin d'installer Julia. [juliaup](https://github.com
 
 ```bash
 curl -fsSL https://install.julialang.org | sh
-. /home/pnavaro/.profile
 ```
 
 
-```
+Suivre les instructions, puis lancer Julia
+
+
+```julia-repl
 $ julia
                _
    _       _ _(_)_     |  Documentation: https://docs.julialang.org
@@ -894,7 +912,16 @@ a + b
 ```
 
 
-Il s'agit du mode standard (Julia) du REPL, mais il existe trois autres modes que vous devez connaître. Pour accéder à chaque mode, tapez un caractère spécifique après l'invite « julia> ». Une fois que vous êtes dans un mode non Julia, vous y restez pour chaque commande que vous exécutez. Pour en sortir, appuyez sur la touche "backspace" après l'invite et vous retrouverez l'invite « julia> ».
+Il s'agit du mode standard (Julia) du REPL, mais il existe trois autres modes que vous devez connaître.
+
+
+Pour accéder à chaque mode, tapez un caractère spécifique après l'invite « julia> ».
+
+
+Une fois que vous êtes dans un mode non Julia, vous y restez pour chaque commande que vous exécutez.
+
+
+Pour en sortir, appuyez sur la touche "backspace" après l'invite et vous retrouverez l'invite « julia> ».
 
 
 ---
@@ -1136,7 +1163,7 @@ Jupyter est un acronyme des 3 langages supportés à l'origine du projet: **JU**
 # Environnement local
 
 
-Comme nous l'avons vu, Pkg.jl est l'équivalent Julia de `pip` ou `conda` pour Python. Il vous permet d'[installer des paquets](https://pkgdocs.julialang.org/v1/managing-packages/) et de [gérer des environnements](https://pkgdocs.julialang.org/v1/environments/) (ensembles de paquets avec des versions spécifiques).
+Comme nous l'avons vu, Pkg.jl vous permet d'[installer des paquets](https://pkgdocs.julialang.org/v1/managing-packages/) et de [gérer des environnements](https://pkgdocs.julialang.org/v1/environments/) (ensembles de paquets avec des versions spécifiques).
 
 
 Vous pouvez activer un environnement depuis le REPL Pkg en spécifiant son chemin `]activate quelquechemin`. Typiquement, vous feriez `]activate .` pour activer l'environnement dans le répertoire courant. Une autre option est de démarrer Julia directement dans un environnement, avec l'option en ligne de commande `julia --project=quelquechemin`.
@@ -1165,9 +1192,12 @@ Si vous n'êtes entré dans aucun projet local, les paquets seront installés da
 Exercice: 
 
 
-  * Installez ls packages `Revise`, et `Plots` dans l'environnement global.
+  * Installez les packages `Revise`, et `Plots` dans l'environnement global.
   * Créez un répertoire avec un environnement local
-  * Ajouter les packages `FFTW`
+  * Ajouter les packages `FFTW` et `LinearAlgebra`
+
+
+Consultez le fichier Project.toml pour vérifier que tout c'est bien passé.
 
 
 ---
@@ -1189,4 +1219,7 @@ julia> Pkg.instantiate()
 julia> using IJulia
 julia> notebook(dir=pwd())
 ```
+
+
+Attention, comme il y a beaucoup de packages à installer, l'opération peut durer plusieurs minutes...
 
