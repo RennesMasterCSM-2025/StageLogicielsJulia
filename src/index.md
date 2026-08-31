@@ -111,7 +111,7 @@ Gitlab: En haut à droite, dans le profile il y a un menu `Settings` qui contien
 # Clonage d'un dépôt git
 
 ```bash
-git clone git@github.com:RennesMasterCSM-2025/StageLogicielsJulia.git
+git clone git@github.com:RennesMasterCSM/StageLogicielsJulia.git
 ls StageLogicielsJulia
 ```
 
