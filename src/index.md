@@ -98,6 +98,13 @@ Enter passphrase (empty for no passphrase):
 
 Appuyer sur "enter" ou saisir un mot de passe. Deux fichiers on été créés : un clé publique et une clé privée. La clé publique sera celle que l'on pourra partager et la clé privée ne doit être communiquée sous aucun prétexte, elle est comme un mot de passe. Si vous la perdez vous devrez recommencer la procédure.
 
+Pour l'afficher et la copier
+
+```
+cat ~/.ssh/id_rsa.pub
+```
+
+
 ---
 
 # Créer votre compte GitHub et GitLab
